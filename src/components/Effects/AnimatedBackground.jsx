@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const ParticleBackground = () => {
+const AnimatedBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -23,9 +23,9 @@ const ParticleBackground = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
         
         const colors = ['#00f3ff', '#b967ff', '#ff2e8b', '#ffffff'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
@@ -54,7 +54,7 @@ const ParticleBackground = () => {
     }
 
     const createParticles = () => {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -67,9 +67,10 @@ const ParticleBackground = () => {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
-            ctx.strokeStyle = `rgba(0, 243, 255, ${0.15 * (1 - distance / 120)})`;
-            ctx.lineWidth = 0.5;
+          if (distance < 150) {
+            const opacity = 0.2 * (1 - distance / 150);
+            ctx.strokeStyle = `rgba(0, 243, 255, ${opacity})`;
+            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -104,18 +105,12 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-        pointerEvents: 'none',
         background: 'radial-gradient(ellipse at top, #0a0a1a 0%, #000008 100%)'
       }}
     />
   );
 };
 
-export default ParticleBackground;
+export default AnimatedBackground;

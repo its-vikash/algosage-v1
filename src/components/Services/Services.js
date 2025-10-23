@@ -1,71 +1,135 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiCode, HiCloud, HiChartBar, HiShieldCheck, HiDatabase, HiDeviceMobile } from 'react-icons/hi';
-import MouseParallax from '../Effects/MouseParallax';
+import { 
+  HiCode, 
+  HiCloud, 
+  HiChartBar, 
+  HiShieldCheck, 
+  HiCog, 
+  HiLightningBolt 
+} from 'react-icons/hi';
+import './Services.css';
 
 const Services = () => {
   const services = [
     {
-      icon: <HiCode className="text-3xl" />,
-      title: 'Custom Development',
-      description: 'Tailored software solutions built to meet your specific business requirements and workflows.',
-      features: ['Web Applications', 'Mobile Apps', 'API Development']
+      icon: <HiCode />,
+      title: 'Implementation Services',
+      description: 'Expert Dynamics 365 implementation tailored to your business needs with seamless integration and deployment.',
+      features: ['Custom Configuration', 'Data Migration', 'System Integration', 'Go-Live Support']
     },
-    // ... other services
+    {
+      icon: <HiCloud />,
+      title: 'Cloud Migration',
+      description: 'Secure and efficient migration to Microsoft cloud platforms with zero downtime and complete data integrity.',
+      features: ['Azure Migration', 'Hybrid Solutions', 'Security Setup', 'Performance Optimization']
+    },
+    {
+      icon: <HiChartBar />,
+      title: 'Business Intelligence',
+      description: 'Transform data into actionable insights with Power BI and advanced analytics for smarter decision-making.',
+      features: ['Power BI Dashboards', 'Predictive Analytics', 'Real-time Reporting', 'Data Visualization']
+    },
+    {
+      icon: <HiShieldCheck />,
+      title: 'Security & Compliance',
+      description: 'Enterprise-grade security solutions ensuring your data protection and regulatory compliance.',
+      features: ['Security Audits', 'Compliance Management', 'Access Control', 'Data Encryption']
+    },
+    {
+      icon: <HiCog />,
+      title: 'System Optimization',
+      description: 'Enhance performance and efficiency of your existing Dynamics 365 systems with expert optimization.',
+      features: ['Performance Tuning', 'Workflow Automation', 'Custom Development', 'Integration Enhancement']
+    },
+    {
+      icon: <HiLightningBolt />,
+      title: 'Training & Support',
+      description: '24/7 support and comprehensive training programs to ensure your team maximizes platform potential.',
+      features: ['User Training', 'Technical Support', 'Documentation', 'Best Practices']
+    }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <section id="services" className="py-20 bg-gray-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+    <section className="services section" id="services">
+      <div className="container">
         <motion.div 
-          className="text-center mb-16"
+          className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent">
-            Our Services
+          <h2 className="section-title">
+            Our <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive digital solutions designed to drive your business forward.
+          <p className="section-subtitle">
+            Comprehensive solutions designed to transform your business operations and drive sustainable growth
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
-              </div>
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-              
-              <ul className="space-y-2 mb-6">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-gray-700">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <button className="flex items-center space-x-2 text-indigo-600 font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span>Learn More</span>
-                <span className="text-lg">→</span>
-              </button>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div 
+          className="neon-container"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+        >
+          <motion.div 
+            className="services-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                className="service-card card"
+                variants={cardVariants}
+                whileHover={{ y: -10 }}
+              >
+                <div className="service-icon">
+                  {service.icon}
+                </div>
+                
+                <h3 className="service-title">{service.title}</h3>
+                
+                <p className="service-description">{service.description}</p>
+                
+                <ul className="service-features">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx}>
+                      <span className="check-icon">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

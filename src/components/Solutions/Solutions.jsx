@@ -1,118 +1,129 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiArrowRight, HiChip, HiDatabase, HiRefresh } from 'react-icons/hi';
+import { HiChip, HiCloud, HiRefresh } from 'react-icons/hi';
+import './Solutions.css';
 
 const Solutions = () => {
   const solutions = [
     {
-      icon: <HiChip className="text-3xl" />,
-      title: 'AI-Powered Analytics',
-      description: 'Leverage artificial intelligence to gain deep insights and make data-driven decisions.',
-      features: ['Predictive Analytics', 'Machine Learning', 'Real-time Insights']
+      icon: <HiChip />,
+      title: 'Dynamics 365 Zenith',
+      subtitle: 'Elevate to new heights',
+      description: 'Where AI-driven excellence meets infinite potential to scale your business operations.',
+      color: 'cyan'
     },
     {
-      icon: <HiDatabase className="text-3xl" />,
-      title: 'Cloud Infrastructure',
-      description: 'Scalable and secure cloud solutions that grow with your business needs.',
-      features: ['Cloud Migration', 'Infrastructure Setup', 'Security Management']
+      icon: <HiCloud />,
+      title: 'Power Apps Genesis',
+      description: 'Forge the start of smart innovation with custom low-code apps that transform how you work.',
+      color: 'purple'
     },
     {
-      icon: <HiRefresh className="text-3xl" />,
-      title: 'Digital Transformation',
-      description: 'Complete digital overhaul to modernize your business processes and operations.',
-      features: ['Process Automation', 'Digital Strategy', 'Change Management']
+      icon: <HiRefresh />,
+      title: 'Managed Evolution',
+      subtitle: 'The leap towards constant',
+      description: "The leap towards constant innovation and stable growth through our expert managed solutions.",
+      color: 'pink'
     }
   ];
 
-  return (
-    <section id="solutions" className="py-20 relative">
-      <div className="w-[95%] max-w-6xl mx-auto">
-        <div className="page-fold rounded-3xl glass-effect overflow-hidden relative">
-          {/* Container Border */}
-          <div className="absolute inset-0 rounded-3xl neon-border pointer-events-none"></div>
-          
-          <div className="p-8 md:p-12 lg:p-16">
-            {/* Section Header */}
-            <motion.div 
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-5xl font-black mb-6">
-                <span className="text-white">Our </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-pink">
-                  Solutions
-                </span>
-              </h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                Comprehensive solutions designed to address your unique business challenges and drive innovation
-              </p>
-            </motion.div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
 
-            {/* Solutions Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {solutions.map((solution, index) => (
-                <motion.div
-                  key={solution.title}
-                  className="glass-card rounded-2xl p-8 border border-gray-800 hover:border-neon-purple/50 transition-all duration-500 group"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  {/* Icon */}
-                  <div className="w-14 h-14 bg-gradient-to-br from-neon-purple to-neon-pink rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
+  return (
+    <section className="solutions section" id="solutions">
+      <div className="container">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title">
+            <span className="gradient-text">IGNITE YOUR</span><br/>
+            ENTERPRISE FUTURE
+          </h2>
+          <p className="section-subtitle">
+            Where AI-Driven Insights Meet Human-Centric Innovation.<br/>
+            Powered by Dynamics 365 & Power Apps
+          </p>
+        </motion.div>
+
+        <motion.div 
+          className="solutions-actions"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <a href="#contact" className="btn btn-secondary">TRANSFORM NOW</a>
+          <a href="#services" className="btn btn-primary">EXPLORE THE NEXUS</a>
+        </motion.div>
+
+        <motion.div 
+          className="neon-container"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.7 }}
+        >
+          <div className="section-header">
+            <h3 className="section-title" style={{ fontSize: '2.5rem' }}>
+              Intelligent Solutions. <span className="gradient-text">Infinite Possibilities</span>
+            </h3>
+          </div>
+
+          <motion.div 
+            className="solutions-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {solutions.map((solution, index) => (
+              <motion.div
+                key={index}
+                className={`solution-card solution-${solution.color}`}
+                variants={itemVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="solution-icon-container">
+                  <div className={`solution-icon icon-bg-${solution.color}`}>
                     {solution.icon}
                   </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-xl font-bold text-white mb-4">{solution.title}</h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed">{solution.description}</p>
-                  
-                  {/* Features */}
-                  <ul className="space-y-2">
-                    {solution.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-neon-purple text-sm">
-                        <div className="w-1.5 h-1.5 bg-neon-purple rounded-full mr-3"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Hover Arrow */}
-                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <HiArrowRight className="text-neon-purple text-xl" />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Bottom CTA */}
-            <motion.div 
-              className="text-center mt-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <motion.button 
-                className="px-8 py-4 bg-gradient-to-r from-neon-purple to-neon-pink text-white font-bold rounded-lg hover:shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 neon-border"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View All Solutions
-              </motion.button>
-            </motion.div>
-          </div>
-        </div>
+                </div>
+                
+                <h4 className="solution-title">{solution.title}</h4>
+                
+                {solution.subtitle && (
+                  <p className="solution-subtitle">{solution.subtitle}</p>
+                )}
+                
+                <p className="solution-description">{solution.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

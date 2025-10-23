@@ -1,196 +1,245 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiPlay, HiArrowRight, HiCheckCircle } from 'react-icons/hi';
-import NeonText from '../Effects/NeonText';
-import MouseParallax from '../Effects/MouseParallax';
+import { HiArrowRight } from 'react-icons/hi';
+import './Hero.css';
 
 const Hero = () => {
-  const features = [
-    'Enterprise Solutions',
-    'Cloud Services',
-    '24/7 Support',
-    'Custom Development'
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15,
+        delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut"
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99]
       }
     }
   };
 
   return (
-    <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-indigo-600/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
+    <section className="hero" id="home">
+      <div className="hero-stars"></div>
+      
+      <div className="container">
+        <motion.div 
+          className="neon-container hero-wrapper"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <div className="hero-content">
+            <motion.h1 className="hero-title" variants={itemVariants}>
+              Empowering Tomorrow's<br />
+              <span className="gradient-text">Business Today</span> with<br />
+              Dynamics 365 & Power Apps
+            </motion.h1>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+            <motion.p className="hero-subtitle" variants={itemVariants}>
+              Transforming Visions into Reality, from Development to Unwavering Support
+            </motion.p>
+
+            <motion.div className="hero-buttons" variants={itemVariants}>
+              <a href="#solutions" className="btn btn-primary">
+                Explore Our Solutions <HiArrowRight />
+              </a>
+              <a href="#contact" className="btn btn-secondary">
+                Get a Free Consultation
+              </a>
+            </motion.div>
+          </div>
+
           <motion.div 
-            className="text-center lg:text-left"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            className="hero-visual"
+            variants={itemVariants}
           >
-            <MouseParallax intensity={0.3}>
-              <motion.h1 
-                variants={itemVariants}
-                className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
-              >
-                Transform Your Business With{' '}
-                <span className="bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent">
-                  Digital Excellence
-                </span>
-              </motion.h1>
-            </MouseParallax>
-            
-            <MouseParallax intensity={0.2}>
-              <motion.p 
-                variants={itemVariants}
-                className="text-xl text-gray-600 mb-8 leading-relaxed"
-              >
-                We provide cutting-edge business solutions that drive growth, 
-                enhance efficiency, and transform your digital landscape. 
-                Partner with us to unlock your business potential.
-              </motion.p>
-            </MouseParallax>
+            {/* Neon Hand SVG - Matching Your Image */}
+            <svg className="neon-hand-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="neonGlow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                
+                <linearGradient id="handGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor: '#00f3ff'}} />
+                  <stop offset="50%" style={{stopColor: '#b967ff'}} />
+                  <stop offset="100%" style={{stopColor: '#ff2e8b'}} />
+                </linearGradient>
 
-            <motion.div 
-              variants={itemVariants}
-              className="grid grid-cols-2 gap-4 mb-8"
-            >
-              {features.map((feature, index) => (
-                <MouseParallax key={feature} intensity={0.1}>
-                  <div className="flex items-center space-x-2 text-gray-700">
-                    <HiCheckCircle className="text-emerald-500 text-xl" />
-                    <span className="font-medium">{feature}</span>
-                  </div>
-                </MouseParallax>
-              ))}
-            </motion.div>
+                <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor: '#00f3ff', stopOpacity: 0.3}} />
+                  <stop offset="100%" style={{stopColor: '#b967ff', stopOpacity: 0.3}} />
+                </linearGradient>
+              </defs>
 
-            <motion.div 
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
-            >
-              <motion.button 
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white bg-gradient-to-r from-indigo-600 to-emerald-500 shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>Get Started</span>
-                <HiArrowRight className="text-lg" />
-              </motion.button>
-              
-              <motion.button 
-                className="flex items-center space-x-3 text-gray-700 font-semibold hover:text-indigo-600 transition-colors group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-emerald-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <HiPlay className="text-white text-lg" />
-                </div>
-                <span>Watch Demo</span>
-              </motion.button>
-            </motion.div>
+              {/* Digital Grid Lines */}
+              <g className="grid-lines" opacity="0.15">
+                {[...Array(20)].map((_, i) => (
+                  <line 
+                    key={`h-${i}`}
+                    x1="0" 
+                    y1={i * 20} 
+                    x2="400" 
+                    y2={i * 20}
+                    stroke="url(#handGradient)"
+                    strokeWidth="0.5"
+                  />
+                ))}
+                {[...Array(20)].map((_, i) => (
+                  <line 
+                    key={`v-${i}`}
+                    x1={i * 20} 
+                    y1="0" 
+                    x2={i * 20} 
+                    y2="400"
+                    stroke="url(#handGradient)"
+                    strokeWidth="0.5"
+                  />
+                ))}
+              </g>
 
-            <motion.div 
-              variants={itemVariants}
-              className="flex justify-center lg:justify-start space-x-8"
-            >
-              {[
-                { number: '500+', label: 'Happy Clients' },
-                { number: '95%', label: 'Success Rate' },
-                { number: '24/7', label: 'Support' }
-              ].map((stat, index) => (
-                <MouseParallax key={stat.label} intensity={0.1}>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-indigo-600 mb-1">{stat.number}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                </MouseParallax>
-              ))}
-            </motion.div>
-          </motion.div>
+              {/* Screen/Device */}
+              <g className="device">
+                <rect 
+                  x="250" 
+                  y="100" 
+                  width="120" 
+                  height="180" 
+                  rx="15" 
+                  fill="url(#screenGradient)"
+                  stroke="url(#handGradient)"
+                  strokeWidth="3"
+                  filter="url(#neonGlow)"
+                />
+                
+                {/* Screen Content Lines */}
+                <line x1="265" y1="120" x2="355" y2="120" stroke="#00f3ff" strokeWidth="2" opacity="0.6"/>
+                <line x1="265" y1="140" x2="340" y2="140" stroke="#b967ff" strokeWidth="2" opacity="0.6"/>
+                <line x1="265" y1="160" x2="355" y2="160" stroke="#ff2e8b" strokeWidth="2" opacity="0.6"/>
+                <line x1="265" y1="180" x2="320" y2="180" stroke="#00f3ff" strokeWidth="2" opacity="0.6"/>
+                
+                {/* Screen Icon */}
+                <circle cx="310" cy="220" r="20" fill="none" stroke="#00f3ff" strokeWidth="2" opacity="0.6"/>
+                <path d="M 310 210 L 310 230 M 300 220 L 320 220" stroke="#00f3ff" strokeWidth="2" opacity="0.6"/>
+              </g>
 
-          {/* Visual Section */}
-          <MouseParallax intensity={0.5}>
-            <motion.div 
-              className="relative h-96 lg:h-[500px]"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              {/* Floating Cards */}
-              {[
-                { top: '10%', left: '0%', delay: 0, icon: '📊', title: 'Analytics', desc: 'Real-time insights' },
-                { top: '50%', right: '10%', delay: 1, icon: '🚀', title: 'Performance', desc: 'Boost efficiency' },
-                { bottom: '20%', left: '20%', delay: 2, icon: '🔒', title: 'Security', desc: 'Enterprise-grade' }
-              ].map((card, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl transform-gpu"
-                  style={{
-                    top: card.top,
-                    left: card.left,
-                    right: card.right,
-                    bottom: card.bottom,
-                  }}
-                  animate={{ 
-                    y: [0, -20, 0],
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    delay: card.delay,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  whileHover={{ scale: 1.1 }}
+              {/* Hand Pointing */}
+              <g className="neon-hand" filter="url(#neonGlow)">
+                {/* Palm */}
+                <ellipse 
+                  cx="150" 
+                  cy="220" 
+                  rx="40" 
+                  ry="50" 
+                  fill="url(#handGradient)"
+                  opacity="0.7"
+                  transform="rotate(-15 150 220)"
+                />
+                
+                {/* Index Finger (pointing) */}
+                <path 
+                  d="M 170 200 Q 200 180, 230 165 Q 245 158, 255 160 L 258 165 Q 250 168, 238 175 Q 210 190, 180 210 Z"
+                  fill="url(#handGradient)"
+                  stroke="#00f3ff"
+                  strokeWidth="1.5"
+                  opacity="0.9"
+                />
+                
+                {/* Thumb */}
+                <ellipse 
+                  cx="130" 
+                  cy="200" 
+                  rx="15" 
+                  ry="25" 
+                  fill="url(#handGradient)"
+                  opacity="0.7"
+                  transform="rotate(30 130 200)"
+                />
+                
+                {/* Other Fingers (folded) */}
+                <ellipse cx="155" cy="235" rx="12" ry="20" fill="url(#handGradient)" opacity="0.6" transform="rotate(-10 155 235)"/>
+                <ellipse cx="145" cy="245" rx="12" ry="20" fill="url(#handGradient)" opacity="0.6" transform="rotate(-5 145 245)"/>
+                <ellipse cx="135" cy="250" rx="12" ry="18" fill="url(#handGradient)" opacity="0.6"/>
+                
+                {/* Wrist */}
+                <rect 
+                  x="110" 
+                  y="255" 
+                  width="45" 
+                  height="30" 
+                  rx="10" 
+                  fill="url(#handGradient)"
+                  opacity="0.6"
+                  transform="rotate(-10 130 270)"
+                />
+              </g>
+
+              {/* Connection Lines/Particles */}
+              <g className="particles">
+                <circle cx="240" cy="170" r="3" fill="#00f3ff" className="particle-float p1">
+                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="220" cy="155" r="2" fill="#b967ff" className="particle-float p2">
+                  <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="260" cy="180" r="2.5" fill="#ff2e8b" className="particle-float p3">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                
+                {/* Connection lines */}
+                <path 
+                  d="M 255 165 Q 260 150, 270 135"
+                  stroke="#00f3ff"
+                  strokeWidth="1"
+                  fill="none"
+                  opacity="0.3"
+                  strokeDasharray="5,5"
                 >
-                  <div className="text-2xl mb-2">{card.icon}</div>
-                  <h4 className="font-semibold text-gray-900">{card.title}</h4>
-                  <p className="text-sm text-gray-600">{card.desc}</p>
-                </motion.div>
-              ))}
+                  <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1s" repeatCount="indefinite"/>
+                </path>
+              </g>
 
-              {/* Main Dashboard Visual */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-48 bg-white rounded-3xl shadow-2xl p-6 transform-gpu hover:rotate-y-10 hover:rotate-x-5 transition-transform duration-500">
-                <div className="w-full h-4 bg-gradient-to-r from-indigo-600 to-emerald-500 rounded-full mb-4"></div>
-                <div className="flex space-x-2 items-end h-24">
-                  {[60, 80, 40, 70].map((height, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex-1 bg-gradient-to-t from-indigo-600 to-emerald-500 rounded-t-lg"
-                      style={{ height: `${height}%` }}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${height}%` }}
-                      transition={{ duration: 1, delay: 0.7 + index * 0.1 }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </MouseParallax>
-        </div>
+              {/* Data Flow Animation */}
+              <g className="data-flow">
+                <circle cx="0" cy="0" r="2" fill="#00f3ff">
+                  <animateMotion 
+                    path="M 255 165 Q 260 150, 270 135"
+                    dur="2s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              </g>
+            </svg>
+          </motion.div>
+        </motion.div>
+
+        {/* Our Expertise Section */}
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ marginTop: '4rem' }}
+        >
+          <h2 className="section-title">
+            Our <span className="gradient-text">Expertise</span>
+          </h2>
+        </motion.div>
       </div>
     </section>
   );

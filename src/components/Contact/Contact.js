@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { HiPhone, HiMail, HiLocationMarker, HiPaperAirplane } from 'react-icons/hi';
+import { HiMail, HiPhone, HiLocationMarker, HiClock } from 'react-icons/hi';
 import './Contact.css';
 
 const Contact = () => {
@@ -8,6 +8,7 @@ const Contact = () => {
     name: '',
     email: '',
     company: '',
+    phone: '',
     message: ''
   });
 
@@ -20,169 +21,179 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    // Handle form submission
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', company: '', message: '' });
+    alert('Thank you! We will get back to you soon.');
+    setFormData({ name: '', email: '', company: '', phone: '', message: '' });
   };
 
   const contactInfo = [
     {
-      icon: <HiPhone />,
-      title: 'Phone',
-      content: '+1 (555) 123-4567',
-      description: 'Mon-Fri from 8am to 6pm'
+      icon: <HiMail />,
+      title: 'Email Us',
+      content: 'info@algosage.com',
+      link: 'mailto:info@algosage.com'
     },
     {
-      icon: <HiMail />,
-      title: 'Email',
-      content: 'info@algosage.com',
-      description: 'Online support'
+      icon: <HiPhone />,
+      title: 'Call Us',
+      content: '+1 (555) 123-4567',
+      link: 'tel:+15551234567'
     },
     {
       icon: <HiLocationMarker />,
-      title: 'Office',
-      content: '123 Business Ave, Suite 100',
-      description: 'New York, NY 10001'
+      title: 'Visit Us',
+      content: '123 Business Ave, Suite 100, New York, NY 10001',
+      link: null
+    },
+    {
+      icon: <HiClock />,
+      title: 'Business Hours',
+      content: 'Mon-Fri: 9AM-6PM EST',
+      link: null
     }
   ];
 
   return (
-    <section id="contact" className="contact section-padding">
+    <section className="contact section" id="contact">
       <div className="container">
         <motion.div 
-          className="text-center"
+          className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">Get In Touch</h2>
+          <h2 className="section-title">
+            Get In <span className="gradient-text">Touch</span>
+          </h2>
           <p className="section-subtitle">
-            Ready to start your project? Contact us today and let's discuss how we can 
-            help your business grow.
+            Let's discuss how we can transform your business
           </p>
         </motion.div>
 
-        <div className="contact-content">
-          <motion.div 
-            className="contact-info"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3>Let's start a conversation</h3>
-            <p className="contact-description">
-              We're here to answer any questions you may have and help you determine 
-              which of our services best fit your needs.
-            </p>
+        <motion.div 
+          className="neon-container"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+        >
+          <div className="contact-content">
+            <motion.div 
+              className="contact-info-section"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <h3 className="contact-heading">Contact Information</h3>
+              <p className="contact-description">
+                Fill out the form and our team will get back to you within 24 hours.
+              </p>
 
-            <div className="contact-methods">
-              {contactInfo.map((item, index) => (
-                <motion.div 
-                  key={item.title}
-                  className="contact-method"
-                  whileHover={{ x: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="contact-icon">{item.icon}</div>
-                  <div className="contact-details">
-                    <h4>{item.title}</h4>
-                    <div className="contact-content">{item.content}</div>
-                    <div className="contact-description">{item.description}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+              <div className="contact-info-grid">
+                {contactInfo.map((info, index) => (
+                  <motion.div
+                    key={index}
+                    className="contact-info-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="info-icon">{info.icon}</div>
+                    <div className="info-details">
+                      <div className="info-title">{info.title}</div>
+                      {info.link ? (
+                        <a href={info.link} className="info-content">{info.content}</a>
+                      ) : (
+                        <div className="info-content">{info.content}</div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
 
-          <motion.div 
-            className="contact-form-container"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="contact-form">
-              <motion.div 
-                className="form-group"
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <label htmlFor="name">Full Name</label>
+            <motion.form 
+              className="contact-form"
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <div className="form-group">
                 <input
                   type="text"
-                  id="name"
                   name="name"
+                  placeholder="Your Name *"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Enter your full name"
+                  className="form-input"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="form-group"
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <label htmlFor="email">Email Address</label>
+              <div className="form-group">
                 <input
                   type="email"
-                  id="email"
                   name="email"
+                  placeholder="Your Email *"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="Enter your email address"
+                  className="form-input"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="form-group"
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <label htmlFor="company">Company</label>
+              <div className="form-group">
                 <input
                   type="text"
-                  id="company"
                   name="company"
+                  placeholder="Company Name"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Enter your company name"
+                  className="form-input"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="form-group"
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <label htmlFor="message">Message</label>
+              <div className="form-group">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group form-group-full">
                 <textarea
-                  id="message"
                   name="message"
+                  placeholder="Your Message *"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows="5"
-                  placeholder="Tell us about your project..."
-                />
-              </motion.div>
+                  className="form-input form-textarea"
+                ></textarea>
+              </div>
 
               <motion.button 
-                type="submit"
-                className="btn btn-primary submit-btn"
+                type="submit" 
+                className="btn btn-primary btn-submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Send Message <HiPaperAirplane />
+                Send Message
               </motion.button>
-            </form>
-          </motion.div>
-        </div>
+            </motion.form>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

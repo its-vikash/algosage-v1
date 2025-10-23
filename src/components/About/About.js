@@ -5,134 +5,108 @@ import './About.css';
 
 const About = () => {
   const stats = [
-    { icon: <HiUsers />, number: '500+', label: 'Happy Clients' },
-    { icon: <HiTrendingUp />, number: '95%', label: 'Success Rate' },
-    { icon: <HiGlobe />, number: '50+', label: 'Countries' }
+    { number: '500+', label: 'Projects Completed', icon: <HiCheckCircle /> },
+    { number: '200+', label: 'Happy Clients', icon: <HiUsers /> },
+    { number: '10+', label: 'Years Experience', icon: <HiTrendingUp /> },
+    { number: '15+', label: 'Countries Served', icon: <HiGlobe /> }
   ];
 
-  const values = [
-    {
-      title: 'Innovation',
-      description: 'We stay ahead of technology trends to deliver cutting-edge solutions.'
-    },
-    {
-      title: 'Quality',
-      description: 'Every project meets the highest standards of excellence and reliability.'
-    },
-    {
-      title: 'Partnership',
-      description: 'We build long-term relationships based on trust and mutual success.'
-    }
+  const features = [
+    'Microsoft Certified Experts',
+    'Agile Development Methodology',
+    '24/7 Technical Support',
+    'Customized Solutions',
+    'Scalable Architecture',
+    'Data-Driven Insights'
   ];
 
   return (
-    <section id="about" className="about section-padding">
+    <section className="about section" id="about">
       <div className="container">
-        <div className="about-content">
-          <motion.div 
-            className="about-text"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="section-title">About AlgoSage</h2>
-            <p className="about-description">
-              For over a decade, we've been at the forefront of digital transformation, 
-              helping businesses of all sizes leverage technology to achieve their goals. 
-              Our team of experts combines technical excellence with business acumen to 
-              deliver solutions that drive real results.
-            </p>
-
-            <div className="about-features">
-              <div className="feature">
-                <HiCheckCircle className="feature-icon" />
-                <span>10+ Years of Experience</span>
-              </div>
-              <div className="feature">
-                <HiCheckCircle className="feature-icon" />
-                <span>Certified Experts</span>
-              </div>
-              <div className="feature">
-                <HiCheckCircle className="feature-icon" />
-                <span>24/7 Support</span>
-              </div>
-              <div className="feature">
-                <HiCheckCircle className="feature-icon" />
-                <span>Proven Methodologies</span>
-              </div>
-            </div>
-
-            <motion.button 
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More About Us
-            </motion.button>
-          </motion.div>
-
-          <motion.div 
-            className="about-visual"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="visual-main">
-              <div className="team-illustration">
-                <div className="person person-1"></div>
-                <div className="person person-2"></div>
-                <div className="person person-3"></div>
-                <div className="collaboration-lines"></div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Stats Section */}
         <motion.div 
-          className="about-stats"
-          initial={{ opacity: 0, y: 50 }}
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          {stats.map((stat, index) => (
-            <motion.div 
-              key={stat.label}
-              className="stat-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="stat-icon">{stat.icon}</div>
-              <div className="stat-number">{stat.number}</div>
-              <div className="stat-label">{stat.label}</div>
-            </motion.div>
-          ))}
+          <h2 className="section-title">
+            About <span className="gradient-text">AlgoSage</span>
+          </h2>
+          <p className="section-subtitle">
+            Your trusted partner in digital transformation
+          </p>
         </motion.div>
 
-        {/* Values Section */}
         <motion.div 
-          className="about-values"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          className="neon-container"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
         >
-          <h3>Our Values</h3>
-          <div className="values-grid">
-            {values.map((value, index) => (
-              <motion.div 
-                key={value.title}
-                className="value-card"
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h4>{value.title}</h4>
-                <p>{value.description}</p>
-              </motion.div>
-            ))}
+          <div className="about-content">
+            <motion.div 
+              className="about-text"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <h3 className="about-heading">
+                Empowering Businesses Through Innovation
+              </h3>
+              
+              <p className="about-paragraph">
+                For over a decade, we've been at the forefront of digital transformation, 
+                helping businesses of all sizes leverage Microsoft Dynamics 365 and Power 
+                Platform technologies to achieve their goals.
+              </p>
+              
+              <p className="about-paragraph">
+                Our team of certified experts combines technical excellence with business 
+                acumen to deliver solutions that drive real results. We don't just implement 
+                technology – we partner with you to transform your business operations and 
+                unlock new opportunities for growth.
+              </p>
+
+              <div className="about-features">
+                {features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    className="feature-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                  >
+                    <span className="feature-check">✓</span>
+                    <span>{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="about-stats"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="stat-card"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="stat-icon">{stat.icon}</div>
+                  <div className="stat-number">{stat.number}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
       </div>

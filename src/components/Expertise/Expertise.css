@@ -1,0 +1,114 @@
+.expertise {
+  padding: 60px 0 80px;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.expertise-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.expertise-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.expertise-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  color: var(--text-white);
+}
+
+.icon-1 {
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(0, 243, 255, 0.05));
+  border: 2px solid var(--primary-cyan);
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+}
+
+.icon-2 {
+  background: linear-gradient(135deg, rgba(185, 103, 255, 0.2), rgba(185, 103, 255, 0.05));
+  border: 2px solid var(--primary-purple);
+  box-shadow: 0 0 25px rgba(185, 103, 255, 0.3);
+}
+
+.icon-3 {
+  background: linear-gradient(135deg, rgba(255, 46, 139, 0.2), rgba(255, 46, 139, 0.05));
+  border: 2px solid var(--primary-pink);
+  box-shadow: 0 0 25px rgba(255, 46, 139, 0.3);
+}
+
+.expertise-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-white);
+}
+
+.expertise-description {
+  font-size: 1rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.expertise-features {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.expertise-features li {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-dot {
+  color: var(--primary-cyan);
+  font-size: 0.6rem;
+}
+
+@media (max-width: 1024px) {
+  .expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .expertise-card {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .expertise-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+  }
+  
+  .expertise-title {
+    font-size: 1.4rem;
+  }
+}
