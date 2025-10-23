@@ -16,10 +16,13 @@ const Header = () => {
   }, []);
 
   const navItems = [
+    { name: 'Home', href: '#home' },
+    { name: 'Expertise', href: '#expertise' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Insights', href: '#services' },
-    { name: 'Partnership', href: '#about' },
-    { name: 'Connect', href: '#contact' }
+    { name: 'Services', href: '#services' },
+    { name: 'About', href: '#about' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   return (
@@ -31,7 +34,6 @@ const Header = () => {
     >
       <div className="container">
         <div className="nav-container">
-          {/* Logo */}
           <motion.a 
             href="#home" 
             className="logo"
@@ -42,7 +44,6 @@ const Header = () => {
             <span className="logo-text">ALGOSAGE</span>
           </motion.a>
 
-          {/* Desktop Navigation */}
           <nav className="desktop-nav">
             {navItems.map((item, index) => (
               <motion.a
@@ -57,7 +58,6 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
           <motion.button
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -69,33 +69,41 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.nav
-            className="mobile-nav"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25 }}
-          >
-            <div className="mobile-nav-content">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.href}
-                  className="mobile-nav-link"
-                  onClick={() => setIsMenuOpen(false)}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
-                >
-                  {item.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.nav>
+          <>
+            <motion.div
+              className="mobile-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.nav
+              className="mobile-nav"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+            >
+              <div className="mobile-nav-content">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.href}
+                    className="mobile-nav-link"
+                    onClick={() => setIsMenuOpen(false)}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.nav>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

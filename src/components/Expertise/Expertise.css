@@ -1,5 +1,7 @@
 .expertise {
-  padding: 60px 0 80px;
+  padding: 40px 0;
+  position: relative;
+  z-index: 99;
 }
 
 .expertise-grid {

@@ -15,38 +15,38 @@ const Services = () => {
     {
       icon: <HiCode />,
       title: 'Implementation Services',
-      description: 'Expert Dynamics 365 implementation tailored to your business needs with seamless integration and deployment.',
+      description: 'Expert Dynamics 365 implementation tailored to your business needs with seamless integration.',
       features: ['Custom Configuration', 'Data Migration', 'System Integration', 'Go-Live Support']
     },
     {
       icon: <HiCloud />,
-      title: 'Cloud Migration',
-      description: 'Secure and efficient migration to Microsoft cloud platforms with zero downtime and complete data integrity.',
-      features: ['Azure Migration', 'Hybrid Solutions', 'Security Setup', 'Performance Optimization']
+      title: 'Upgrade Services',
+      description: 'Modernize your business with Dynamics 365 Upgrade Services. We assess, recommend, and upgrade.',
+      features: ['System Assessment', 'Upgrade Planning', 'Migration Support', 'Testing & Validation']
     },
     {
       icon: <HiChartBar />,
-      title: 'Business Intelligence',
-      description: 'Transform data into actionable insights with Power BI and advanced analytics for smarter decision-making.',
-      features: ['Power BI Dashboards', 'Predictive Analytics', 'Real-time Reporting', 'Data Visualization']
+      title: 'Support Services',
+      description: 'Access proactive Dynamics 365 Support services from 150+ Microsoft-certified consultants.',
+      features: ['24/7 Support', 'Issue Resolution', 'System Monitoring', 'Performance Optimization']
     },
     {
       icon: <HiShieldCheck />,
-      title: 'Security & Compliance',
-      description: 'Enterprise-grade security solutions ensuring your data protection and regulatory compliance.',
-      features: ['Security Audits', 'Compliance Management', 'Access Control', 'Data Encryption']
+      title: 'Consulting Services',
+      description: 'Maximize ROI with comprehensive strategies and expert implementation.',
+      features: ['Business Analysis', 'Solution Design', 'Best Practices', 'ROI Optimization']
     },
     {
       icon: <HiCog />,
-      title: 'System Optimization',
-      description: 'Enhance performance and efficiency of your existing Dynamics 365 systems with expert optimization.',
-      features: ['Performance Tuning', 'Workflow Automation', 'Custom Development', 'Integration Enhancement']
+      title: 'Audit Services',
+      description: 'Evaluate business effectiveness with business-centric Dynamics 365 Audit services.',
+      features: ['System Health Check', 'Performance Review', 'Security Audit', 'Compliance Check']
     },
     {
       icon: <HiLightningBolt />,
-      title: 'Training & Support',
-      description: '24/7 support and comprehensive training programs to ensure your team maximizes platform potential.',
-      features: ['User Training', 'Technical Support', 'Documentation', 'Best Practices']
+      title: 'Training Services',
+      description: 'Reap utmost value by utilizing advanced features with 360-degree training approach.',
+      features: ['User Training', 'Admin Training', 'Custom Workshops', 'Documentation']
     }
   ];
 
@@ -54,9 +54,7 @@ const Services = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
@@ -65,9 +63,7 @@ const Services = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.5
-      }
+      transition: { duration: 0.5 }
     }
   };
 
@@ -85,50 +81,42 @@ const Services = () => {
             Our <span className="gradient-text">Services</span>
           </h2>
           <p className="section-subtitle">
-            Comprehensive solutions designed to transform your business operations and drive sustainable growth
+            Comprehensive solutions designed to transform your business operations
           </p>
         </motion.div>
 
         <motion.div 
-          className="neon-container"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.7 }}
+          className="services-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.div 
-            className="services-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="service-card card"
-                variants={cardVariants}
-                whileHover={{ y: -10 }}
-              >
-                <div className="service-icon">
-                  {service.icon}
-                </div>
-                
-                <h3 className="service-title">{service.title}</h3>
-                
-                <p className="service-description">{service.description}</p>
-                
-                <ul className="service-features">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx}>
-                      <span className="check-icon">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </motion.div>
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              className="service-card card"
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
+            >
+              <div className="service-icon">
+                {service.icon}
+              </div>
+              
+              <h3 className="service-title">{service.title}</h3>
+              
+              <p className="service-description">{service.description}</p>
+              
+              <ul className="service-features">
+                {service.features.map((feature, idx) => (
+                  <li key={idx}>
+                    <span className="check-icon">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

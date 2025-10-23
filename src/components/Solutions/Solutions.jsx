@@ -7,22 +7,23 @@ const Solutions = () => {
   const solutions = [
     {
       icon: <HiChip />,
-      title: 'Dynamics 365 Zenith',
-      subtitle: 'Elevate to new heights',
-      description: 'Where AI-driven excellence meets infinite potential to scale your business operations.',
+      title: 'Business Central',
+      subtitle: 'All-in-one business management',
+      description: 'An all-in-one business management solution designed for SMBs that offers a 360-degree holistic view of the entire business.',
       color: 'cyan'
     },
     {
       icon: <HiCloud />,
-      title: 'Power Apps Genesis',
-      description: 'Forge the start of smart innovation with custom low-code apps that transform how you work.',
+      title: 'Finance & Operations',
+      subtitle: 'Simplify financial operations',
+      description: 'Simplify complex financial operations while getting real-time data analytics and accurate insights.',
       color: 'purple'
     },
     {
       icon: <HiRefresh />,
-      title: 'Managed Evolution',
-      subtitle: 'The leap towards constant',
-      description: "The leap towards constant innovation and stable growth through our expert managed solutions.",
+      title: 'Supply Chain Management',
+      subtitle: 'Automate supply chain',
+      description: 'Automate your entire supply chain process. Boost efficiency, cut costs, enhance accuracy.',
       color: 'pink'
     }
   ];
@@ -31,9 +32,7 @@ const Solutions = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
+      transition: { staggerChildren: 0.15 }
     }
   };
 
@@ -42,9 +41,7 @@ const Solutions = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6
-      }
+      transition: { duration: 0.6 }
     }
   };
 
@@ -59,70 +56,43 @@ const Solutions = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title">
-            <span className="gradient-text">IGNITE YOUR</span><br/>
-            ENTERPRISE FUTURE
+            Intelligent Solutions. <span className="gradient-text">Infinite Possibilities</span>
           </h2>
           <p className="section-subtitle">
-            Where AI-Driven Insights Meet Human-Centric Innovation.<br/>
-            Powered by Dynamics 365 & Power Apps
+            Comprehensive solutions designed to transform your business operations
           </p>
         </motion.div>
 
         <motion.div 
-          className="solutions-actions"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          className="solutions-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
         >
-          <a href="#contact" className="btn btn-secondary">TRANSFORM NOW</a>
-          <a href="#services" className="btn btn-primary">EXPLORE THE NEXUS</a>
-        </motion.div>
-
-        <motion.div 
-          className="neon-container"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-        >
-          <div className="section-header">
-            <h3 className="section-title" style={{ fontSize: '2.5rem' }}>
-              Intelligent Solutions. <span className="gradient-text">Infinite Possibilities</span>
-            </h3>
-          </div>
-
-          <motion.div 
-            className="solutions-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {solutions.map((solution, index) => (
-              <motion.div
-                key={index}
-                className={`solution-card solution-${solution.color}`}
-                variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="solution-icon-container">
-                  <div className={`solution-icon icon-bg-${solution.color}`}>
-                    {solution.icon}
-                  </div>
+          {solutions.map((solution, index) => (
+            <motion.div
+              key={index}
+              className={`solution-card solution-${solution.color}`}
+              variants={itemVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="solution-icon-container">
+                <div className={`solution-icon icon-bg-${solution.color}`}>
+                  {solution.icon}
                 </div>
-                
-                <h4 className="solution-title">{solution.title}</h4>
-                
-                {solution.subtitle && (
-                  <p className="solution-subtitle">{solution.subtitle}</p>
-                )}
-                
-                <p className="solution-description">{solution.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+              
+              <h4 className="solution-title">{solution.title}</h4>
+              
+              {solution.subtitle && (
+                <p className="solution-subtitle">{solution.subtitle}</p>
+              )}
+              
+              <p className="solution-description">{solution.description}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

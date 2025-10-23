@@ -9,13 +9,28 @@ import Projects from './components/Projects/Projects';
 import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import ParticleBackground from './components/Effects/ParticleBackground';
 import './App.css';
+// import AnimatedDots from './components/Effects/AnimatedDots'
+import Particles from './components/Effects/Particles'
+import SplashCursor from './components/Effects/SplashCursor'
 
 function App() {
   return (
     <div className="App">
-      <ParticleBackground />
+      <SplashCursor />
+      {/* <AnimatedDots /> */}
+      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
+        <Particles
+          particleColors={['#07e6ccff', '#1076fbff']}
+          particleCount={6000}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
       <Header />
       <main className="main-content">
         <Hero />

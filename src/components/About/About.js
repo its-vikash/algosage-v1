@@ -5,10 +5,30 @@ import './About.css';
 
 const About = () => {
   const stats = [
-    { number: '500+', label: 'Projects Completed', icon: <HiCheckCircle /> },
-    { number: '200+', label: 'Happy Clients', icon: <HiUsers /> },
-    { number: '10+', label: 'Years Experience', icon: <HiTrendingUp /> },
-    { number: '15+', label: 'Countries Served', icon: <HiGlobe /> }
+    { 
+      number: '500+', 
+      label: 'Businesses Helped', 
+      icon: <HiCheckCircle />,
+      description: 'Achieved expected ROI'
+    },
+    { 
+      number: '2X', 
+      label: 'Efficiency Boost', 
+      icon: <HiUsers />,
+      description: 'Centralized data structure'
+    },
+    { 
+      number: '40%', 
+      label: 'Cost Savings', 
+      icon: <HiTrendingUp />,
+      description: 'Improved cost savings'
+    },
+    { 
+      number: '150+', 
+      label: 'Certified Consultants', 
+      icon: <HiGlobe />,
+      description: 'Microsoft-certified Experts'
+    }
   ];
 
   const features = [
@@ -104,6 +124,7 @@ const About = () => {
                   <div className="stat-icon">{stat.icon}</div>
                   <div className="stat-number">{stat.number}</div>
                   <div className="stat-label">{stat.label}</div>
+                  <div className="stat-description">{stat.description}</div>
                 </motion.div>
               ))}
             </motion.div>

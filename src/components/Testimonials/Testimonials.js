@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiStar, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import './Testimonials.css';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const testimonials = [
     {
@@ -16,7 +19,7 @@ const Testimonials = () => {
     },
     {
       name: 'Sarah Mitchell',
-      position: 'Operations Director, Global Retail Inc.',
+      position: 'Operations Director, Global Retail',
       content: 'The NAV to Business Central upgrade was our best choice for business growth and simplified operations. Dynamics Square made the entire process smooth and efficient.',
       rating: 5,
       company: 'Global Retail',
@@ -33,7 +36,7 @@ const Testimonials = () => {
     {
       name: 'Emily Rodriguez',
       position: 'CEO, HealthCare Plus',
-      content: 'Dynamics Square is a fantastic partner and helped us move from an existing CRM to Dynamics 365. The process improvement was significant, and the visibility to our company performance was exactly what we needed.',
+      content: 'Dynamics Square is a fantastic partner and helped us move from an existing CRM to Dynamics 365. The process improvement was significant.',
       rating: 5,
       company: 'HealthCare Plus',
       image: 'https://i.pravatar.cc/150?img=26'
@@ -41,86 +44,129 @@ const Testimonials = () => {
     {
       name: 'David Kumar',
       position: 'Project Manager, FinanceHub',
-      content: 'We had an excellent experience with Dynamics Square. The team was incredibly helpful and responsive, ensuring our needs were met quickly. They expertly translated our requirements into effective solutions.',
+      content: 'We had an excellent experience with Dynamics Square. The team was incredibly helpful and responsive, ensuring our needs were met quickly.',
       rating: 5,
       company: 'FinanceHub',
       image: 'https://i.pravatar.cc/150?img=60'
+    },
+    {
+      name: 'Lisa Thompson',
+      position: 'VP Operations, Logistics World',
+      content: 'AlgoSage delivered a comprehensive supply chain solution that improved our efficiency by 45%. True professionals!',
+      rating: 5,
+      company: 'Logistics World',
+      image: 'https://i.pravatar.cc/150?img=45'
     }
   ];
 
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-scroll every 5 seconds
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isAutoPlaying, isMobile]);
+
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : testimonials.length - 2;
+      if (prevIndex >= maxIndex) {
+        return 0;
+      }
+      return prevIndex + 1;
+    });
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : testimonials.length - 2;
+      if (prevIndex === 0) {
+        return maxIndex;
+      }
+      return prevIndex - 1;
+    });
   };
 
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
+
+  // Determine how many cards to show
+  const visibleTestimonials = isMobile 
+    ? [testimonials[currentIndex]] 
+    : [testimonials[currentIndex], testimonials[currentIndex + 1]].filter(Boolean);
+
   return (
-    <section className="py-12" id="testimonials">
-      <div className="container mx-auto px-4">
+    <section className="testimonials section" id="testimonials">
+      <div className="container">
         <motion.div 
-          className="text-center mb-8"
+          className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="section-title">
             Client <span className="gradient-text">Testimonials</span>
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             What our clients say about working with us
           </p>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Slider Container */}
-          <div className="relative overflow-hidden">
+        <div 
+          className="testimonials-slider-wrapper"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="testimonials-slider">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 100 }}
+                className={`testimonials-grid ${isMobile ? 'single-card' : ''}`}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
+                exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="bg-card-bg backdrop-blur-md border border-primary-cyan/20 rounded-3xl p-8 md:p-12"
               >
-                {/* Rating */}
-                <div className="flex justify-center gap-1 mb-6">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <HiStar key={i} className="text-yellow-400 text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]" />
-                  ))}
-                </div>
-
-                {/* Content */}
-                <p className="text-lg md:text-xl text-gray-300 italic text-center mb-8 leading-relaxed">
-                  "{testimonials[currentIndex].content}"
-                </p>
-
-                {/* Author Info */}
-                <div className="flex flex-col items-center">
-                  <img 
-                    src={testimonials[currentIndex].image} 
-                    alt={testimonials[currentIndex].name}
-                    className="w-20 h-20 rounded-full border-4 border-primary-cyan shadow-lg shadow-primary-cyan/30 mb-4"
-                  />
-                  <div className="text-center">
-                    <div className="text-xl font-semibold text-white mb-1">
-                      {testimonials[currentIndex].name}
+                {visibleTestimonials.map((testimonial, index) => (
+                  <div key={index} className="testimonial-card card">
+                    <div className="testimonial-rating">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <HiStar key={i} className="star-icon" />
+                      ))}
                     </div>
-                    <div className="text-sm text-gray-400 mb-1">
-                      {testimonials[currentIndex].position}
-                    </div>
-                    <div className="text-sm text-primary-cyan">
-                      {testimonials[currentIndex].company}
+
+                    <p className="testimonial-content">"{testimonial.content}"</p>
+
+                    <div className="testimonial-author">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="author-avatar"
+                      />
+                      <div className="author-info">
+                        <div className="author-name">{testimonial.name}</div>
+                        <div className="author-position">{testimonial.position}</div>
+                        <div className="author-company">{testimonial.company}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -128,32 +174,28 @@ const Testimonials = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-primary-cyan/20 hover:bg-primary-cyan/40 border-2 border-primary-cyan rounded-full p-3 transition-all duration-300 hover:scale-110"
-            aria-label="Previous testimonial"
+            className="slider-btn slider-btn-prev"
+            aria-label="Previous testimonials"
           >
-            <HiChevronLeft className="text-2xl text-white" />
+            <HiChevronLeft />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-primary-cyan/20 hover:bg-primary-cyan/40 border-2 border-primary-cyan rounded-full p-3 transition-all duration-300 hover:scale-110"
-            aria-label="Next testimonial"
+            className="slider-btn slider-btn-next"
+            aria-label="Next testimonials"
           >
-            <HiChevronRight className="text-2xl text-white" />
+            <HiChevronRight />
           </button>
 
           {/* Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
+          <div className="slider-indicators">
+            {[...Array(isMobile ? testimonials.length : Math.ceil((testimonials.length - 1)))].map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-primary-cyan w-8' 
-                    : 'bg-gray-600 hover:bg-gray-500'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+                className={`indicator ${index === currentIndex ? 'active' : ''}`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>

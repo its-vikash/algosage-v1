@@ -1,19 +1,13 @@
 .solutions {
-  padding: 80px 0;
-}
-
-.solutions-actions {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
+  padding: 40px 0;
+  position: relative;
+  z-index: 99;
 }
 
 .solutions-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 2rem;
   margin-top: 3rem;
 }
 
@@ -21,7 +15,7 @@
   background: rgba(10, 15, 35, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 25px;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   border: 2px solid;
   transition: all 0.4s ease;
@@ -135,21 +129,11 @@
 @media (max-width: 640px) {
   .solutions-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .solutions-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .solutions-actions .btn {
-    width: 100%;
-    max-width: 300px;
+    gap: 1.5rem;
   }
   
   .solution-card {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
   
   .solution-icon {
