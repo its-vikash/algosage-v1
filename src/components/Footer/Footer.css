@@ -178,6 +178,34 @@
   color: rgba(0, 243, 255, 0.3);
 }
 
+.back-to-top {
+  position: fixed;
+  right: 2.4rem;
+  bottom: 2.4rem;
+  z-index: 100;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: none;
+  border-radius: 50%;
+  background: #151a24;
+  color: #1bfefd;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px #0ef0e3, 0 0 16px #1bfefd;
+  transition: box-shadow 0.2s, background 0.2s, color 0.2s, transform 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.back-to-top:hover {
+  background: #11141f;
+  color: #ffffff;
+  box-shadow: 0 0 16px #1bfefd, 0 0 40px #0ef0e3;
+  transform: translateY(-5px) scale(1.05);
+}
+
+
 @media (max-width: 1200px) {
   .footer-content {
     grid-template-columns: repeat(3, 1fr);
@@ -196,6 +224,16 @@
   
   .footer-contact {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 540px) {
+  .back-to-top {
+    right: 1rem;
+    bottom: 1rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.2rem;
   }
 }
 

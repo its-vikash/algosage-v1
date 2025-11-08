@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
 import { 
   HiMail, 
@@ -46,6 +46,22 @@ const Footer = () => {
     { icon: <FaInstagram />, href: '#', name: 'Instagram' },
     { icon: <FaGithub />, href: '#', name: 'GitHub' }
   ];
+
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 250) {
+          setShowTopBtn(true);
+        } else {
+          setShowTopBtn(false);
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
   return (
     <footer className="footer">
@@ -180,6 +196,20 @@ const Footer = () => {
             </div>
           </div>
         </motion.div>
+        {showTopBtn && (
+          <motion.button
+            className="back-to-top"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.1, boxShadow: "0 0 30px #1bfefd, 0 0 80px #0ef0e3" }}
+            transition={{ duration: 0.3 }}
+            aria-label="Back to top"
+          >
+            ↑
+          </motion.button>
+        )}
       </div>
     </footer>
   );

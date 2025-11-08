@@ -163,11 +163,13 @@
   background: rgba(0, 243, 255, 0.05);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   .logo-text {
     font-size: 1.3rem;
+  }  
+  .logo {
+    z-index: 99;
   }
-  
   .logo-icon {
     font-size: 1.5rem;
   }
