@@ -13,6 +13,7 @@ import {
   FaGithub
 } from 'react-icons/fa';
 import './Footer.css';
+import imgLogo from '../../assets/logo.png'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -58,8 +59,9 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="footer-logo">
-              <span className="logo-icon">◆</span>
-              <span className="logo-text">ALGOSAGE</span>
+              {/* <span className="logo-icon">◆</span>
+              <span className="logo-text">ALGOSAGE</span> */}
+              <img src={imgLogo} alt='ALGOSAGE' /> 
             </div>
             <p className="footer-description">
               Empowering businesses through innovative Microsoft Dynamics 365 

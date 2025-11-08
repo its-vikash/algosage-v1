@@ -10,6 +10,10 @@
   border-bottom: 1px solid rgba(0, 243, 255, 0.1);
 }
 
+.nav-container img {
+    max-width: 220px;
+}
+
 .main-header.scrolled {
   background: rgba(5, 5, 16, 0.95);
   box-shadow: 0 5px 30px rgba(0, 243, 255, 0.1);
@@ -166,5 +170,8 @@
   
   .logo-icon {
     font-size: 1.5rem;
+  }
+  .nav-container img {
+    max-width: 180px;
   }
 }

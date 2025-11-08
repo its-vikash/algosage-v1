@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import './Header.css';
+import imgLogo from '../../assets/logo.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,8 +41,9 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="logo-icon">◆</span>
-            <span className="logo-text">ALGOSAGE</span>
+            {/* <span className="logo-icon">◆</span>
+            <span className="logo-text">ALGOSAGE</span> */}
+            <img src={imgLogo} alt='ALGOSAGE' /> 
           </motion.a>
 
           <nav className="desktop-nav">

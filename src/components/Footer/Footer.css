@@ -24,7 +24,9 @@
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
-
+.footer-logo img {
+    max-width: 220px;
+}
 .footer-logo .logo-icon {
   font-size: 1.8rem;
   color: var(--primary-cyan);

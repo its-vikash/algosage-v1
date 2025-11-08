@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiArrowRight, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import './Hero.css';
+import videoContent from '../../../src/assets/anime-final.mp4'
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -57,7 +58,7 @@ const Hero = () => {
 
   return (
     <section className="hero" id="home">
-      <div className="hero-bg-effects">
+      {/* <div className="hero-bg-effects">
         <motion.div
           className="glow-orb glow-orb-1"
           animate={{
@@ -84,8 +85,7 @@ const Hero = () => {
           }}
           transition={{ duration: 7, repeat: Infinity }}
         />
-      </div>
-
+      </div> */}
       <div className="container">
         <div className="hero-slider" onMouseEnter={() => setIsAutoPlaying(false)} onMouseLeave={() => setIsAutoPlaying(true)}>
           <AnimatePresence mode="wait">
@@ -115,7 +115,7 @@ const Hero = () => {
                   transition={{ delay: 0.3 }}
                 >
                   {heroSlides[currentSlide].title}<br />
-                  <span className="gradient-text">{heroSlides[currentSlide].highlight}</span><br />
+                  <span className="gradient-text">{heroSlides[currentSlide].highlight}</span>&nbsp;
                   {heroSlides[currentSlide].subtitle}
                 </motion.h1>
 
@@ -151,10 +151,14 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
+                
+                <video autoPlay="{true}" muted loop id="myVideo">
+                  <source src={videoContent} type="video/mp4" />
+                </video>
                 {/* Enhanced Animated Visual with CSS Hands */}
-                <div className="neon-tech-visual">
+                {/* <div className="neon-tech-visual"> */}
                   {/* Central Digital Interface */}
-                  <div className="digital-interface">
+                  {/* <div className="digital-interface"> */}
                     {/* <div className="interface-ring ring-1"></div>
                     <div className="interface-ring ring-2"></div>
                     <div className="interface-ring ring-3"></div>
@@ -175,7 +179,7 @@ const Hero = () => {
                         }}
                       ></div>
                     ))} */}
-                  </div>
+                  {/* </div> */}
 
                   {/* Left Hand */}
                   {/* <div className="tech-hand hand-left">
@@ -238,7 +242,12 @@ const Hero = () => {
                     <line className="connect-line" x1="100" y1="200" x2="200" y2="200" stroke="#00f3ff" strokeWidth="2" />
                     <line className="connect-line" x1="300" y1="200" x2="200" y2="200" stroke="#b967ff" strokeWidth="2" />
                   </svg> */}
-                </div>
+                {/* </div> */}
+                {/* <img
+                  src={imgGIF}
+                  alt="Hand touching AI screen"
+                  className="hero-gif-image"
+                /> */}
               </motion.div>
 
             </motion.div>
